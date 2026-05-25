@@ -1,6 +1,7 @@
 import Header from "./components/Header";
 import TaskInput from "./components/TaskInput";
 import { useEffect, useState } from "react";
+import TaskItem from "./components/TaskItem";
 
 type Task = {
     id: number;
@@ -138,42 +139,26 @@ function App() {
             <p>Active: {activeTasks}</p>
           </div>
 
-          {filteredTasks.map((task) => (
-
-              <div key={task.id}>
-
-                  {editingTaskId === task.id ? (
-                      <div>
-                      <input
-                        value = {editedText}
-                        onChange={(event)=>
-                            setEditedText(event.target.value)}
+          {filteredTasks.length === 0 ? (
+                  <p>
+                      {tasks.length === 0
+                          ? "Add your first task"
+                          : "No tasks found"}
+                  </p>
+              ) : (
+                  filteredTasks.map((task) => (
+                      <TaskItem
+                          key={task.id}
+                          task={task}
+                          editingTaskId={editingTaskId}
+                          editedText={editedText}
+                          setEditedText={setEditedText}
+                          deleteTask={deleteTask}
+                          toggleTask={toggleTask}
+                          setEditingTaskId={setEditingTaskId}
+                          saveEditedTask={saveEditedTask}
                       />
-
-                      <button
-                            onClick={()=> saveEditedTask(task.id)}>
-                          Save
-                      </button>
-                      </div>
-                  ): (
-                      <p>{task.completed ? "✅" : "⬜"} {task.title}</p>
-                      )}
-
-                  <button onClick={() => deleteTask(task.id)}>
-                      Delete
-                  </button>
-                  <button onClick={() => toggleTask(task.id)}>
-                      Toggle
-                  </button>
-                  <button onClick={()=>{
-                      setEditingTaskId(task.id);
-                      setEditedText(task.title);
-                  }}>
-                      Edit
-                  </button>
-
-              </div>
-          ))}
+          )))}
       </div>
   )
 }
