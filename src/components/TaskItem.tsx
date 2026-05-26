@@ -1,8 +1,5 @@
-type Task = {
-    id: number;
-    title: string;
-    completed: boolean;
-};
+import type { Task } from "../types/task";
+import "../App.css";
 
 type TaskItemProps = {
   task: Task;
@@ -32,7 +29,10 @@ function TaskItem({
                       saveEditedTask,
                   }: TaskItemProps) {
     return (
-        <div>
+        <div className="task-item">
+            <div>
+
+
             {editingTaskId === task.id ? (
                 <div>
                     <input
@@ -40,32 +40,54 @@ function TaskItem({
                         onChange={(event) => setEditedText(
                             event.target.value
                         )}
+
+                        onKeyDown={(event)=>{
+                            if (event.key === "Escape"){
+                                setEditingTaskId(null);
+                                setEditedText("")
+                            }
+                            if (event.key === "Enter"){
+                                saveEditedTask(task.id);
+                            }
+                        }}
                     />
 
-                    <button onClick={() => saveEditedTask(task.id)}>
+                    <button className="buttons button" onClick={() => saveEditedTask(task.id)}>
                         Save
                     </button>
                 </div>
             ) : (
-                <p>
+                <p
+                    className={`task-title ${
+                        task.completed ? "completed" : ""
+                    }`}
+                >
                     {task.completed ? "✅" : "⬜"}{" "}
                     {task.title}
                 </p>
             )}
+            </div>
+            <div>
 
-            <button onClick={() => deleteTask(task.id)}>
-                Delete
-            </button>
 
-            <button onClick={() => toggleTask(task.id)}>
-                Toggle
-            </button>
-            <button onClick={() => {setEditingTaskId(task.id);
-                                        setEditedText(task.title);
-            }}
+            <div className="buttons">
+                <button className="button" onClick={() => deleteTask(task.id)}>
+                    Delete
+                </button>
+
+                <button className="button" onClick={() => toggleTask(task.id)}>
+                    Toggle
+                </button>
+                <button className="button" onClick={() => {
+                    setEditingTaskId(task.id);
+                    setEditedText(task.title);
+                }}
                 >
-                Edit
-            </button>
+                    Edit
+                </button>
+            </div>
+            </div>
+
         </div>
     );
 }

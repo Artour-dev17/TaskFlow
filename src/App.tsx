@@ -2,12 +2,9 @@ import Header from "./components/Header";
 import TaskInput from "./components/TaskInput";
 import { useEffect, useState } from "react";
 import TaskItem from "./components/TaskItem";
+import type { Task } from "./types/task";
+import './App.css';
 
-type Task = {
-    id: number;
-    title: string;
-    completed: boolean;
-}
 function App() {
 
 
@@ -109,22 +106,28 @@ function App() {
 
     const [editedText, setEditedText] = useState("");
 
+    const persentageCompleted = (completedTasks / totalTasks) * 100;
+
   return (
-      <div>
-          <Header/>
-          <TaskInput onAddTask={addTask}/>
+      <div className="app">
+          <h1 className="title">
+              <Header/>
+          </h1>
 
-          <div>
-              <button onClick={() => setFilter("all")}>All</button>
+          <TaskInput  onAddTask={addTask}/>
+
+          <div className="controls">
+              <button className="button" onClick={() => setFilter("all")}>All</button>
 
 
-              <button onClick={() => setFilter("active")}>Active</button>
+              <button className="button" onClick={() => setFilter("active")}>Active</button>
 
 
-              <button onClick={() => setFilter("completed")}>Completed</button>
+              <button className="button" onClick={() => setFilter("completed")}>Completed</button>
           </div>
 
           <input
+            className="search-input"
             type="text"
             placeholder="Search tasks..."
             value={search}
@@ -133,9 +136,9 @@ function App() {
             }
           />
 
-          <div>
+          <div className="stats">
             <p>Total: {totalTasks}</p>
-            <p>Completed: {completedTasks} / {totalTasks}</p>
+            <p>Completed: {persentageCompleted} %</p>
             <p>Active: {activeTasks}</p>
           </div>
 

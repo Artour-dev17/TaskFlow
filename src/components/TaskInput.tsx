@@ -1,4 +1,5 @@
 import {useState} from "react";
+import "../App.css"
 
 type TaskInputProps ={
     onAddTask: (task: string) => void;
@@ -17,11 +18,17 @@ function TaskInput({onAddTask}:TaskInputProps){
     return(
         <div>
             <input
+                className="input-enter"
                 value = {task}
                 onChange={(event) => setTask(event.target.value)}
+                onKeyDown={(event)=>{
+                    if (event.key === "Enter"){
+                        handleAddTask();
+                    }
+                }}
                 placeholder="Enter task..."
             />
-            <button onClick={handleAddTask}>Add</button>
+            <button className="button" onClick={handleAddTask}>Add</button>
         </div>
     )
 }
