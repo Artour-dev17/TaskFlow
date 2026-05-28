@@ -5,6 +5,7 @@
 }
 .title{
   margin-bottom: 20px;
+  font-size: 3rem;
 }
 
 .controls{
@@ -62,6 +63,11 @@
   background-color: #553040;
 }
 
+.button:disabled{
+  background-color: #fff;: #9ca3af;
+  cursor: not-allowed;
+}
+
 .input{
   padding: 10px;
   border-radius: 6px;
@@ -70,8 +76,25 @@
 }
 
 .input-enter{
-  padding: 5.5px;
+  padding: 5px;
   margin-bottom: 20px;
   margin-right: 10px;
   border-radius: 6px;
 }
+
+.delete-btn {
+  background-color: #bf2020;
+}
+.delete-btn:hover{
+  background-color: #dc2626;
+}
+
+.save-btn {
+  background-color: #15803d;
+  margin-top: 3px;
+}
+
+.save-btn:hover{
+  background-color: #16a34a;
+}
+

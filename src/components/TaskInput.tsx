@@ -28,7 +28,11 @@ function TaskInput({onAddTask}:TaskInputProps){
                 }}
                 placeholder="Enter task..."
             />
-            <button className="button" onClick={handleAddTask}>Add</button>
+            <button
+                className="button"
+                onClick={handleAddTask}
+                disabled={!task.trim()}
+            >Add</button>
         </div>
     )
 }

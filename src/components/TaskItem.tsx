@@ -1,5 +1,6 @@
 import type { Task } from "../types/task";
 import "../App.css";
+import { useEffect, useRef } from "react";
 
 type TaskItemProps = {
   task: Task;
@@ -28,6 +29,18 @@ function TaskItem({
                       setEditingTaskId,
                       saveEditedTask,
                   }: TaskItemProps) {
+
+    const inputRef = useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        if (
+            editingTaskId === task.id &&
+            inputRef.current
+        ){
+            inputRef.current.focus();
+        }
+    }, [editingTaskId, task.id]);
+
     return (
         <div className="task-item">
             <div>
@@ -36,6 +49,7 @@ function TaskItem({
             {editingTaskId === task.id ? (
                 <div>
                     <input
+                        ref = {inputRef}
                         value={editedText}
                         onChange={(event) => setEditedText(
                             event.target.value
@@ -52,7 +66,7 @@ function TaskItem({
                         }}
                     />
 
-                    <button className="buttons button" onClick={() => saveEditedTask(task.id)}>
+                    <button className="buttons button save-btn" onClick={() => saveEditedTask(task.id)}>
                         Save
                     </button>
                 </div>
@@ -70,22 +84,24 @@ function TaskItem({
             <div>
 
 
-            <div className="buttons">
-                <button className="button" onClick={() => deleteTask(task.id)}>
-                    Delete
-                </button>
+                <div className="buttons">
 
-                <button className="button" onClick={() => toggleTask(task.id)}>
-                    Toggle
-                </button>
-                <button className="button" onClick={() => {
-                    setEditingTaskId(task.id);
-                    setEditedText(task.title);
-                }}
-                >
-                    Edit
-                </button>
-            </div>
+
+                    <button className="button" onClick={() => toggleTask(task.id)}>
+                        Toggle
+                    </button>
+                    <button className="button" onClick={() => {
+                        setEditingTaskId(task.id);
+                        setEditedText(task.title);
+                    }}
+                    >
+                        Edit
+                    </button>
+
+                    <button className="button delete-btn" onClick={() => deleteTask(task.id)}>
+                        Delete
+                    </button>
+                </div>
             </div>
 
         </div>

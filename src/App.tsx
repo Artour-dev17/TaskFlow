@@ -106,13 +106,11 @@ function App() {
 
     const [editedText, setEditedText] = useState("");
 
-    const persentageCompleted = (completedTasks / totalTasks) * 100;
-
   return (
       <div className="app">
-          <h1 className="title">
-              <Header/>
-          </h1>
+
+                <Header />
+
 
           <TaskInput  onAddTask={addTask}/>
 
@@ -138,7 +136,7 @@ function App() {
 
           <div className="stats">
             <p>Total: {totalTasks}</p>
-            <p>Completed: {persentageCompleted} %</p>
+            <p>Completed: {completedTasks} / {totalTasks}</p>
             <p>Active: {activeTasks}</p>
           </div>
 
