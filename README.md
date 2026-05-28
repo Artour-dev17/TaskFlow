@@ -1,7 +1,7 @@
 # TaskFlow
 simple todo app
 
-1. Features:
+1. Features:</br>
 Add tasks </br>
 Edit tasks </br>
 Delete tasks </br>
@@ -10,7 +10,7 @@ Filter tasks </br>
 Local storage persistence </br>
 Keyboard shortcuts </br>
 
-2. Tech stack:
+2. Tech stack:</br>
    React </br>
    Typescript</br>
    Vite</br>
