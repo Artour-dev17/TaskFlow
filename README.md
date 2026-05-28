@@ -20,3 +20,7 @@ Keyboard shortcuts </br>
 
 4. Screenshots</br>
    <img width="774" height="467" alt="image" src="https://github.com/user-attachments/assets/f780bb64-1340-410d-ac2f-f0a208397c2a" />
+
+5. Installation </br>
+   npm install
+   npm run dev
